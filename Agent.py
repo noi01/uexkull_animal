@@ -22,17 +22,17 @@ states = 20
 actions = 2
 
 try:
-    arr = np.loadtxt('av_table_aiy.csv', delimiter=';')
+    arr = np.loadtxt('/home/pi/Desktop/uexkull_animal/av_table_aiy.csv', delimiter=';')
 except Exception as e:
     print e
-    arr = np.zeros((states, actions))
+    arr = np((states, actions))
 
 av_table = ActionValueTable(states, actions)
 av_table.initialize(arr.flatten())
 
 # define Q-learning agent
-learner = Q(0.5, 0.0)
-learner._setExplorer(EpsilonGreedyExplorer(0.0))
+learner = Q(0.1, 0.5)
+#learner._setExplorer(EpsilonGreedyExplorer(0.0))
 agent = LearningAgent(av_table, learner)
 
 # define the environment
@@ -53,4 +53,4 @@ while True:
     export_arr = av_table.getActionValues(np.arange(states))
     export_arr = export_arr.reshape((states, actions))
 
-    np.savetxt("av_table_aiy.csv", export_arr, fmt='%.3f', delimiter=';')
+    np.savetxt("/home/pi/Desktop/uexkull_animal/av_table_aiy.csv", export_arr, fmt='%.3f', delimiter=';')
