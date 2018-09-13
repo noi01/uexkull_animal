@@ -2,7 +2,9 @@ from pybrain.rl.environments.environment import Environment
 from scipy import zeros
 import random
 
-#sensor_input = 15
+
+
+#sensor_input = 15 #integer
 #sensor_input = random.sample([1, 2, 3, 4, 5],  1)
 #random.uniform(1, 10)
 
