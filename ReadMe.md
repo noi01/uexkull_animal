@@ -15,5 +15,9 @@ The listed websites contain in depth and understandable resource for learnig pyt
 http://simontechblog.blogspot.com/2010/08/pybrain-reinforcement-learning-tutorial.html
 http://www.vishalavalani.com/build-a-raspberry-pi-robot-with-python/
 
+Rasberry Pi helpful hardware links
+
+https://pimylifeup.com/raspberry-pi-light-sensor/
+
 
 
