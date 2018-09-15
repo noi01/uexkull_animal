@@ -32,10 +32,11 @@ class Task(Task):
         reward = 0
         f = 0 #true if the state imptovd, otherwise false
         
-        if  sensors >= 10: #any number
+        if  sensors >= 1: #any number
             reward = 1
             f = 1
             time.sleep(2)
+            print "reward"
         else:
             time.sleep(2)
         

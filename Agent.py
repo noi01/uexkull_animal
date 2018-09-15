@@ -13,26 +13,27 @@ import numpy as np
 # define action-value table
 # number of states is:
 #
-#   2 states - comfortable / uncomfortable
-#   2 actions - walk/not walk
+#   2 states agent can be in the environment - comfortable / uncomfortable
+
 # number of actions:
 #
-# 4 - the number of action values the environment accepts - Forward on rotation 0, 90, 180, 270 
-states = 20
-actions = 2
+# 2 the number of action values the environment accepts -  walk/not walk
+
+states = 2 #Has to match class Env(Environment) in Environment - outdim
+actions = 2 #Has to match class Env(Environment) in Environment - indim 
 
 try:
-    arr = np.loadtxt('/home/pi/Desktop/uexkull_animal/av_table_aiy.csv', delimiter=';')
+    arr = np.loadtxt('uexkull.csv', delimiter=';')
 except Exception as e:
     print e
-    arr = np((states, actions))
+    arr = np.zeros((states, actions))
 
 av_table = ActionValueTable(states, actions)
 av_table.initialize(arr.flatten())
 
 # define Q-learning agent
-learner = Q(0.1, 0.5)
-#learner._setExplorer(EpsilonGreedyExplorer(0.0))
+learner = Q(0.1, 0.5) #uncomment fo Q learning / comment 
+learner._setExplorer(EpsilonGreedyExplorer(0.5)) #uncomment 
 agent = LearningAgent(av_table, learner)
 
 # define the environment
@@ -53,4 +54,4 @@ while True:
     export_arr = av_table.getActionValues(np.arange(states))
     export_arr = export_arr.reshape((states, actions))
 
-    np.savetxt("/home/pi/Desktop/uexkull_animal/av_table_aiy.csv", export_arr, fmt='%.3f', delimiter=';')
+    np.savetxt("uexkull.csv", export_arr, fmt='%.3f', delimiter=';')
