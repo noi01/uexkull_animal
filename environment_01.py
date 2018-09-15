@@ -2,7 +2,22 @@ from pybrain.rl.environments.environment import Environment
 from scipy import zeros
 import random
 
+#Rasberry Pi imports
+import RPi.GPIO as GPIO
+import time
 
+GPIO.setmode(GPIO.BOARD)
+
+GPIO.setup(11, GPIO.OUT)
+GPIO.setup(13, GPIO.OUT)
+
+def Forward():
+	GPIO.output(11, 0)
+	GPIO.output(13, 1)
+
+def Snooze():
+	GPIO.output(11, 0)
+	GPIO.output(13, 0)
 
 #sensor_input = 1 #integer mock input
 
@@ -39,8 +54,10 @@ class Env(Environment):
         print "Action performed: ", action
         if  action >= 1: #any number
             print "Walk"
+            Forward()
             #print sensor_value 
         else:
+            Snooze()
             print "Not Walk"
             #print sensor_value
         

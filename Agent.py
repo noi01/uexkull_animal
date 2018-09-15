@@ -1,4 +1,3 @@
-
 from task_01 import Task
 from environment_01 import Env
 from pybrain.rl.learners.valuebased import ActionValueTable
@@ -9,6 +8,12 @@ from pybrain.rl.explorers import EpsilonGreedyExplorer
 
 import pylab
 import numpy as np
+
+#Rasberry Pi imports
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BOARD)
 
 # define action-value table
 # number of states is:

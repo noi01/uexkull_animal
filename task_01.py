@@ -3,7 +3,11 @@ from scipy import clip, asarray
 from pybrain.rl.environments.task import Task
 from numpy import *
 
+#Rasberry Pi imports
+import RPi.GPIO as GPIO
 import time
+
+GPIO.setmode(GPIO.BOARD)
 
 class Task(Task):
     """ A task is associating a purpose with an environment. It decides how to evaluate the observations, potentially returning reinforcement rewards or fitness values. 
