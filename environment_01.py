@@ -51,8 +51,8 @@ class Env(Environment):
     # the number of action values the environment accepts - Forward / stay 
     indim = 2
     
-    # the number of sensor values the environment produces - n x light sensors
-    outdim = 2
+    # the number of sensor values the environment produces - analog in photoresistor
+    outdim = 1000
     
     
     
@@ -65,7 +65,8 @@ class Env(Environment):
         #sensor_value = random.choice(sensor_input)#mock input variation 2
         sensor_value = rc_time (pin_to_circuit)
         
-        print sensor_value 
+        print "Sensor input"
+        print sensor_value
         
         return [float(sensor_value),]
         
@@ -77,12 +78,12 @@ class Env(Environment):
         """
         print "Action performed: ", action
         if  action >= 1: #any number
-            print "Walk"
+            print "I Walk"
             Forward()
             #print sensor_value 
         else:
             Snooze()
-            print "Not Walk"
+            print "I don't walk"
             #print sensor_value
         
 

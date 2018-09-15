@@ -24,7 +24,7 @@ GPIO.setmode(GPIO.BOARD)
 #
 # 2 the number of action values the environment accepts -  walk/not walk
 
-states = 2 #Has to match class Env(Environment) in Environment - outdim
+states = 1000 #Has to match class Env(Environment) in Environment - outdim
 actions = 2 #Has to match class Env(Environment) in Environment - indim 
 
 try:
