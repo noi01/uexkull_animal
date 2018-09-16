@@ -1,11 +1,11 @@
 ## Uexkull Animal
 
-Small Pybrain based Python code for implementing Pybrain RL on Rasberry Pi.
+Small Pybrain based Python code for implementing RL on Rasberry Pi to model simple interaction with environment.
 
 
 ## Dependencies
 
-Pybrain
+Pybrain http://pybrain.org/
 
 
 ## Acknowledgments & Further reading
