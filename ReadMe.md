@@ -1,3 +1,5 @@
+![Uexkull Animal](http://scncflab.com/wp-content/uploads/2018/09/img-01.png)
+
 ## Uexkull Animal
 
 Small Pybrain based Python code for implementing RL on Rasberry Pi to model simple interaction with environment.
