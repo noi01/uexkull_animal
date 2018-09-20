@@ -21,6 +21,6 @@ Rasberry Pi helpful hardware links
 
 https://pimylifeup.com/raspberry-pi-light-sensor/
 
-<p align="center"> 
-![Uexkull Animal](http://scncflab.com/wp-content/uploads/2018/09/img-02.png)
+<p align="center">
+  <img  src="http://scncflab.com/wp-content/uploads/2018/09/img-02.png">
 </p>
