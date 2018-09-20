@@ -52,7 +52,7 @@ class Env(Environment):
     indim = 2
     
     # the number of sensor values the environment produces - analog in photoresistor
-    outdim = 1000
+    outdim = 1028
     
     
     
@@ -80,6 +80,7 @@ class Env(Environment):
         if  action >= 1: #any number
             print "I Walk"
             Forward()
+            time.sleep(1)
             #print sensor_value 
         else:
             Snooze()
