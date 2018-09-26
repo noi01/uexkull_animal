@@ -26,8 +26,9 @@ def Snooze():
 #sensor_input = 1 #integer mock input variation 1
 #sensor_input = [0, 1] #mock input variation 2
 	
-pin_to_circuit = 7 #define the pin that goes to the circuit
+pin_to_circuit = 7 #define the sensor pin that goes to the circuit
 
+#analog sensor to digital input pin
 def rc_time (pin_to_circuit):
     count = 0
   
@@ -40,10 +41,11 @@ def rc_time (pin_to_circuit):
     GPIO.setup(pin_to_circuit, GPIO.IN)
   
     #Count until the pin goes high
-    while (GPIO.input(pin_to_circuit) == GPIO.LOW):
+    while (GPIO.input(pin_to_circuit) == GPIO.LOW and count<1023):
         count += 1
 
     return count
+    
 
 class Env(Environment):
     """ Environment for RL walking robot """       
@@ -52,7 +54,7 @@ class Env(Environment):
     indim = 2
     
     # the number of sensor values the environment produces - analog in photoresistor
-    outdim = 1028
+    outdim = 1024
     
     
     
@@ -80,7 +82,7 @@ class Env(Environment):
         if  action >= 1: #any number
             print "I Walk"
             Forward()
-            time.sleep(1)
+            time.sleep(0.5)
             #print sensor_value 
         else:
             Snooze()

@@ -36,7 +36,7 @@ class Task(Task):
         reward = 0
         f = 0 #true if the state imptovd, otherwise false
         
-        if  sensors >= 300: #in equal or above this number
+        if  sensors >= 500: #in equal or above this number
             reward = 1
             f = 1
             time.sleep(4)

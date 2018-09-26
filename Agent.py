@@ -24,11 +24,11 @@ GPIO.setmode(GPIO.BOARD)
 #
 # 2 the number of action values the environment accepts -  walk/not walk
 
-states = 1028 #Has to match class Env(Environment) in Environment - outdim
+states = 1024 #Has to match class Env(Environment) in Environment - outdim
 actions = 2 #Has to match class Env(Environment) in Environment - indim 
 
 try:
-    arr = np.loadtxt('uexkull.csv', delimiter=';')
+    arr = np.loadtxt('/home/pi/Desktop/uexkull_animal/uexkull.csv', delimiter=';')
 except Exception as e:
     print e
     arr = np.zeros((states, actions))
@@ -59,4 +59,4 @@ while True:
     export_arr = av_table.getActionValues(np.arange(states))
     export_arr = export_arr.reshape((states, actions))
 
-    np.savetxt("uexkull.csv", export_arr, fmt='%.3f', delimiter=';')
+    np.savetxt("/home/pi/Desktop/uexkull_animal/uexkull.csv", export_arr, fmt='%.3f', delimiter=';')
