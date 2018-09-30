@@ -2,11 +2,11 @@
 
 ## Uexkull Animal
 
-Small Pybrain based Python code for implementing RL on Rasberry Pi to model simple interaction with environment.
-
+The basic idea behind the project is to provide accessible and easy to understand and modify Machine reinforcement learning code that allows for interfacing with real world input. The small code base aims to allow for exploring simple interactions with the environment an entry level projects into reinforcement learning. 
 
 ## Dependencies
 
+Rasberry Pi / Python
 Pybrain http://pybrain.org/
 
 
