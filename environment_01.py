@@ -87,16 +87,16 @@ class Env(Environment):
         if  action == 1: #any number
             print "I Walk"
             Forward()
-            time.sleep(0.5)
+            time.sleep(1)
             #print sensor_value
         elif action == 2:
             print "Back"
             Backward()
-            time.sleep(0.5)
+            time.sleep(1)
         else:
             Snooze()
             print "I don't walk"
-            time.sleep(0.5)
+            time.sleep(1)
             #print sensor_value
         
 

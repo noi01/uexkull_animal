@@ -34,25 +34,29 @@ class Task(Task):
         sensors = self.env.getSensors()
         
         reward = 0
-        f = 0 #true if the state imptovd, otherwise false
+        f = 0 #changed to true to when if statement is fullfilled, otherwise false
         
-        if  sensors >= 500: #in equal or above this number
+        if  sensors >= 500: #if equal or above this number
             print "Sensor read"
             print sensors
             reward = 1
             f = 1
-            time.sleep(4)
-            print "Robot rewarded"
-            
+            #time.sleep(4)
         else:
-            time.sleep(4)
-        # Here to write if the light has increase - the get 1, otherwise 0
+            print "Sensor read"
+            print sensors
+            #time.sleep(4)
+        
         
         # retrieve last reward, and save current given reward
         cur_reward = self.lastreward
         self.lastreward = reward
+        
+        print cur_reward
     
         return cur_reward
+        
+        
 
     @property
     def indim(self):
