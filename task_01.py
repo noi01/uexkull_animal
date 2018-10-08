@@ -3,7 +3,11 @@ from scipy import clip, asarray
 from pybrain.rl.environments.task import Task
 from numpy import *
 
+#Rasberry Pi imports
+import RPi.GPIO as GPIO
 import time
+
+GPIO.setmode(GPIO.BOARD)
 
 class Task(Task):
     """ A task is associating a purpose with an environment. It decides how to evaluate the observations, potentially returning reinforcement rewards or fitness values. 
@@ -32,14 +36,16 @@ class Task(Task):
         reward = 0
         f = 0 #true if the state imptovd, otherwise false
         
-        if  sensors >= 1: #any number
+        if  sensors >= 500: #in equal or above this number
+            print "Sensor read"
+            print sensors
             reward = 1
             f = 1
-            time.sleep(2)
-            print "reward"
+            time.sleep(4)
+            print "Robot rewarded"
+            
         else:
-            time.sleep(2)
-        
+            time.sleep(4)
         # Here to write if the light has increase - the get 1, otherwise 0
         
         # retrieve last reward, and save current given reward
