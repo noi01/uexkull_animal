@@ -17,8 +17,8 @@ class Task(Task):
     def __init__(self, environment):
         """ All tasks are coupled to an environment. """
         self.env = environment
-        # we will store the last reward given, remember that "r" in the Q learning formula is the one from the last interaction, not the one given for the current interaction!
         self.lastreward = 0
+        # keep last reward. Q lerning reward is given for the interaction before current interaction!
 
     def performAction(self, action):
         """ A filtered mapping towards performAction of the underlying environment. """                
@@ -31,12 +31,12 @@ class Task(Task):
     
     def getReward(self):
         """ Compute and return the current reward (i.e. corresponding to the last action performed) """
-        sensors = self.env.getSensors()
+        sensors = self.env.getSensors()#input from environment_01.py
         
         reward = 0
-        f = 0 #changed to true to when if statement is fullfilled, otherwise false
+        f = 0 #will chang to true (1) to when if statement is fullfilled, otherwise false
         
-        if  sensors >= 500: #if equal or above this number
+        if  sensors >= 500: #divide number from sensors
             print "Sensor read"
             print sensors
             reward = 1
@@ -48,7 +48,7 @@ class Task(Task):
             #time.sleep(4)
         
         
-        # retrieve last reward, and save current given reward
+        # retrieve last reward - save current received reward
         cur_reward = self.lastreward
         self.lastreward = reward
         

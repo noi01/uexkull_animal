@@ -10,6 +10,8 @@ import time
 
 GPIO.setmode(GPIO.BOARD)
 
+# DC motors
+
 GPIO.setup(11, GPIO.OUT)
 GPIO.setup(13, GPIO.OUT)
 
@@ -27,9 +29,6 @@ def Snooze():
 	
 #SETUP INPUT
 
-#sensor_input = 1 #integer mock input variation 1
-#sensor_input = [0, 1] #mock input variation 2
-	
 pin_to_circuit = 7 #define the sensor pin that goes to the circuit
 
 #analog sensor to digital input pin
@@ -44,7 +43,7 @@ def rc_time (pin_to_circuit):
     #Change the pin back to input
     GPIO.setup(pin_to_circuit, GPIO.IN)
   
-    #Count until the pin goes high
+    #Count until the pin goes high and cap the number at 1023
     while (GPIO.input(pin_to_circuit) == GPIO.LOW and count<1023):
         count += 1
 
@@ -54,7 +53,7 @@ def rc_time (pin_to_circuit):
 class Env(Environment):
     """ Environment for RL walking robot """       
 
-    # the number of action values the environment accepts - Forward / stay 
+    # the number of action values the environment accepts - Foreward, Backward and Snooze
     indim = 3
     
     # the number of sensor values the environment produces - analog in photoresistor
@@ -67,13 +66,7 @@ class Env(Environment):
             :rtype: by default, this is assumed to be a numpy array of doubles
         """
         
-        #sensor_value = sensor_input #mock input variation 1
-        #sensor_value = random.choice(sensor_input)#mock input variation 2
-        
-        sensor_value = rc_time (pin_to_circuit)
-        
-        #print "Sensor input"
-        #print sensor_value
+        sensor_value = rc_time (pin_to_circuit) #sensor messurment
         
         return [float(sensor_value),]
         
@@ -84,20 +77,21 @@ class Env(Environment):
             :type action: by default, this is assumed to be a numpy array of doubles
         """
         print "Action performed: ", action
-        if  action == 1: #any number
+        if  action == 1: 
             print "I Walk"
             Forward()
             time.sleep(1)
-            #print sensor_value
+
         elif action == 2:
-            print "Back"
+            print "I Retreat"
             Backward()
             time.sleep(1)
+            
         else:
             Snooze()
             print "I don't walk"
             time.sleep(1)
-            #print sensor_value
+
         
 
     def reset(self):
