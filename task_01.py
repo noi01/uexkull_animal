@@ -7,7 +7,28 @@ from numpy import *
 import RPi.GPIO as GPIO
 import time
 
+#Sensors that are used as part of task assesment
 GPIO.setmode(GPIO.BOARD)
+
+pir_sensor = 11
+
+def PIR_sensing(pir_sensor):
+    
+    GPIO.setup(pir_sensor, GPIO.IN)
+    current_state = 0
+
+    time.sleep(0.1)
+    current_state = GPIO.input(pir_sensor)
+    
+    #return 1 or 0 
+    if current_state == 1:
+       return 1 
+
+    elif current_state == 0:
+        return 0
+
+
+
 
 class Task(Task):
     """ A task is associating a purpose with an environment. It decides how to evaluate the observations, potentially returning reinforcement rewards or fitness values. 
@@ -32,27 +53,38 @@ class Task(Task):
     def getReward(self):
         """ Compute and return the current reward (i.e. corresponding to the last action performed) """
         sensors = self.env.getSensors()#input from environment_01.py
-        
+
         reward = 0
         f = 0 #will chang to true (1) to when if statement is fullfilled, otherwise false
         
-        if  sensors >= 500: #divide number from sensors
-            print "Sensor read"
-            print sensors
+        print ("Sensor read: ", sensors)
+        print ("PIR movement: ", PIR_sensing(pir_sensor))
+        
+        if any(x>=100 for x in sensors) and PIR_sensing(pir_sensor)==1:
+#           if sensors >= 500 : #works in python2
             reward = 1
             f = 1
-            #time.sleep(4)
-        else:
-            print "Sensor read"
-            print sensors
-            #time.sleep(4)
+
+        elif any(x>=100 for x in sensors) and PIR_sensing(pir_sensor)==0:
+            reward = 0
+            f = 0
+        
+        elif any(x<=100 for x in sensors) and PIR_sensing(pir_sensor)==0:
+            reward = 1
+            f = 1
+            
+        elif any(x<=100 for x in sensors) and PIR_sensing(pir_sensor)==1:
+            reward = 0
+            f = 0  
+
+
         
         
         # retrieve last reward - save current received reward
         cur_reward = self.lastreward
         self.lastreward = reward
         
-        print cur_reward
+        print ("Reward: ", cur_reward)
     
         return cur_reward
         

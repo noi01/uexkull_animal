@@ -29,7 +29,7 @@ try:
     arr = np.loadtxt('/home/pi/Desktop/uexkull_animal/uexkull.csv', delimiter=';')
     # open action value table  from .csv file
 except Exception as e:
-    print e
+#    print e
     arr = np.zeros((states, actions))
     # except if the file does not exist - ie. first time - then creat and initialize it with numpy of zeros
 
@@ -53,6 +53,10 @@ experiment = Experiment(task, agent)
 # ready to go, start the process
 while True:
     experiment.doInteractions(12)
+    
+    '''After n-number (here 12) steps, we call the agent’s learn() method and then reset it.
+    This will make the agent forget the previously executed steps but of course it won’t undo the changes it learned.'''
+    
     agent.learn()
     agent.reset()
 
@@ -61,3 +65,14 @@ while True:
 
     np.savetxt("/home/pi/Desktop/uexkull_animal/uexkull.csv", export_arr, fmt='%.3f', delimiter=';')
     # save action value table to .csv file
+    
+# Clean-up actions   
+try:
+    pass
+    
+except KeyboardInterrupt:
+    pass
+    
+finally:
+    GPIO.cleanup()
+    
