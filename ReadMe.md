@@ -4,6 +4,10 @@
 
 The basic idea behind the project is to provide accessible and easy to understand and modify Machine reinforcement learning code that allows for interfacing with real world input. The small code base aims to allow for exploring simple interactions with the environment an entry level projects into reinforcement learning. 
 
+## Accompanying Articles
+
+http://scncflab.com/blog/?p=385 - Installation and sensor setup
+
 ## Dependencies
 
 Rasberry Pi / Python
